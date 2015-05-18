@@ -1,4 +1,10 @@
 ---
 - hosts: all 
   tasks:
+      - debug: var=ansible_env
+         
+      - name: share ssh agent forwarding socket directory
+        file: path={{ansible_env.SSH_AUTH_SOCK|dirname}} mode=0777 state=directory
+      - name: share ssh agent forwarding socket
+        file: path={{ansible_env.SSH_AUTH_SOCK}} mode=0777 state=file}}}}
       - shell: echo "hello world"
